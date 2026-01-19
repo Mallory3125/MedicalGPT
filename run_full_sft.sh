@@ -1,15 +1,18 @@
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nproc_per_node 8 supervised_finetuning.py \
-    --model_name_or_path Qwen/Qwen2.5-0.5B-Instruct \
-    --train_file_dir ./data/finetune \
-    --validation_file_dir ./data/finetune \
+#!/bin/bash
+
+python supervised_finetuning.py \
+    --model_name_or_path /home/minimind/MiniMind2 \
+    --train_file_dir ./role_play_data/output/sharegpt_formatted_data-evol-gpt4.jsonl\
+    --validation_file_dir ./role_play_data/output/sharegpt_formatted_data-evol-gpt4.jsonl \
     --cache_dir ./model \
-    --device_map None \
+    --device_map cuda:0 \
     --use_peft False \
     --per_device_train_batch_size 2 \
     --do_train \
     --num_train_epochs 3 \
     --per_device_eval_batch_size 2 \
-    --max_train_samples -1 \
+    --max_train_samples 2000 \
+    --max_eval_samples 200 \
     --learning_rate 3e-5 \
     --warmup_ratio 0.2 \
     --model_max_length 2048 \
@@ -32,5 +35,4 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nproc_per_node 8 supervised_fine
     --ddp_find_unused_parameters False \
     --gradient_checkpointing True \
     --template_name chatglm3 \
-    --deepspeed ./zero2.json \
     --bf16

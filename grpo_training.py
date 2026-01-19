@@ -227,9 +227,13 @@ def grpo_train(
         logger.info("*** Initializing model kwargs ***")
 
     # Model initialization
-    torch_dtype = (
-        model_args.torch_dtype if model_args.torch_dtype in ["auto", None] else getattr(torch, model_args.torch_dtype)
-    )
+    # TRL 0.27.0: ModelConfig has `dtype`
+    dtype_value = getattr(model_args, "dtype", None)  # "auto" | "bfloat16" | "float16" | "float32" | torch.dtype | None
+
+    if isinstance(dtype_value, torch.dtype) or dtype_value in ["auto", None]:
+        torch_dtype = dtype_value
+    else:
+        torch_dtype = getattr(torch, dtype_value)
 
     # Set up distributed training config
     world_size = int(os.environ.get("WORLD_SIZE", "1"))

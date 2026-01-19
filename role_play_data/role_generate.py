@@ -1,10 +1,13 @@
-import json
+import json,os
 import random
 
 from openai import OpenAI
 from tqdm import tqdm
 
-client = OpenAI()
+client = OpenAI(
+    api_key=os.getenv("DASHSCOPE_API_KEY"),
+    base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+)
 print(client)
 
 
@@ -14,7 +17,7 @@ def generate(prompt):
         {"role": "user", "content": prompt}
     ]
     r = client.chat.completions.create(
-        model='gpt-4o',
+        model='deepseek-v3.2',
         temperature=1,
         messages=messages, )
     response = r.choices[0].message.content
@@ -61,12 +64,12 @@ def generate_role(input_file, save_file, total_lines):
 
 
 if __name__ == '__main__':
-    total_lines = 50
+    total_lines = 10
     input_file = "seed_nurse_role.jsonl"
     save_file = "seed_nurse_role_output.jsonl"
     generate_role(input_file, save_file, total_lines)
 
-    total_lines = 50
+    total_lines = 10
     input_file = "seed_patient_role.jsonl"
     save_file = "seed_patient_role_output.jsonl"
     generate_role(input_file, save_file, total_lines)

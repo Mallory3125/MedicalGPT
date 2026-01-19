@@ -125,7 +125,7 @@ def main():
     parser.add_argument('--base_model', default=None, type=str, required=True)
     parser.add_argument('--lora_model', default="", type=str, help="If None, perform inference on the base model")
     parser.add_argument('--tokenizer_path', default=None, type=str)
-    parser.add_argument('--system_prompt', default="", type=str, help="System prompt")
+    parser.add_argument('--system_prompt', default=None, type=str, help="a file contain System prompt")
     parser.add_argument('--stop_str', default="", type=str)
     parser.add_argument("--repetition_penalty", type=float, default=1.0)
     parser.add_argument("--max_new_tokens", type=int, default=512)
@@ -191,7 +191,14 @@ def main():
             print(example)
 
     # Chat
-    system_prompt = args.system_prompt
+    # Load system prompt from file if provided
+    if args.system_prompt is not None:
+        try:
+            with open(args.system_prompt, 'r', encoding='utf-8') as f:
+                system_prompt = f.read().strip()
+            print(f"Loaded system prompt from file: {args.system_prompt}")
+        except Exception as e:
+            print(f"Error reading system prompt file: {e}")    
     stop_str = args.stop_str or "</s>"  # Use default stop string
 
     if args.interactive:

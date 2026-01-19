@@ -406,15 +406,28 @@ def main():
         # Loading a dataset from local files.
         data_files = {}
         if data_args.train_file_dir is not None and os.path.exists(data_args.train_file_dir):
-            train_data_files = glob(f'{data_args.train_file_dir}/**/*.json', recursive=True) + glob(
-                f'{data_args.train_file_dir}/**/*.jsonl', recursive=True)
-            logger.info(f"train files: {train_data_files}")
+            if os.path.isfile(data_args.train_file_dir):
+                # 如果是单个文件，直接使用
+                train_data_files = [data_args.train_file_dir]
+                logger.info(f"train file: {train_data_files}")
+            else:
+                # 如果是目录，递归查找文件
+                train_data_files = glob(f'{data_args.train_file_dir}/**/*.json', recursive=True) + glob(
+                    f'{data_args.train_file_dir}/**/*.jsonl', recursive=True)
+                logger.info(f"train files: {train_data_files}")
             data_files["train"] = train_data_files
         if data_args.validation_file_dir is not None and os.path.exists(data_args.validation_file_dir):
-            eval_data_files = glob(f'{data_args.validation_file_dir}/**/*.json', recursive=True) + glob(
-                f'{data_args.validation_file_dir}/**/*.jsonl', recursive=True)
-            logger.info(f"eval files: {eval_data_files}")
+            if os.path.isfile(data_args.validation_file_dir):
+                # 如果是单个文件，直接使用
+                eval_data_files = [data_args.validation_file_dir]
+                logger.info(f"eval file: {eval_data_files}")
+            else:
+                # 如果是目录，递归查找文件
+                eval_data_files = glob(f'{data_args.validation_file_dir}/**/*.json', recursive=True) + glob(
+                    f'{data_args.validation_file_dir}/**/*.jsonl', recursive=True)
+                logger.info(f"eval files: {eval_data_files}")
             data_files["validation"] = eval_data_files
+
         raw_datasets = load_dataset(
             'json',
             data_files=data_files,
@@ -701,7 +714,7 @@ def main():
                     max_memory[i] = f"{usable_mem // (1024 ** 3)}GiB"
 
                 model_kwargs["max_memory"] = max_memory
-
+        
         logger.info(f"🔧 大模型训练配置:")
         logger.info(f"  model_kwargs: {model_kwargs}")
 

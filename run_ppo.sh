@@ -1,8 +1,8 @@
-CUDA_VISIBLE_DEVICES=0,1 python ppo_training.py \
+python ppo_training.py \
     --sft_model_path Qwen/Qwen2.5-0.5B-Instruct \
     --reward_model_path Qwen/Qwen2.5-0.5B-Instruct \
     --template_name qwen \
-    --torch_dtype bfloat16 \
+    --dtype bfloat16 \
     --train_file_dir ./data/finetune \
     --validation_file_dir ./data/finetune \
     --max_source_length 1024 \

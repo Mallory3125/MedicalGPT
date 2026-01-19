@@ -1,0 +1,595 @@
+(medical) root@autodl-container-e94b4883e6-40f13c1f:/home/MedicalGPT# chomod +x run_dpo.sh
+bash: chomod: command not found
+(medical) root@autodl-container-e94b4883e6-40f13c1f:/home/MedicalGPT# chmod +x run_dpo.sh
+(medical) root@autodl-container-e94b4883e6-40f13c1f:/home/MedicalGPT# ls /root/autodl-tmp
+huggingface  MiniMind2  minmind_dataset
+(medical) root@autodl-container-e94b4883e6-40f13c1f:/home/MedicalGPT# mkdir /root/autodl-tmp/cache
+(medical) root@autodl-container-e94b4883e6-40f13c1f:/home/MedicalGPT# ls /root/autodl-tmp
+cache  huggingface  MiniMind2  minmind_dataset
+(medical) root@autodl-container-e94b4883e6-40f13c1f:/home/MedicalGPT# ./run_grpo.sh
+<string>:196: FutureWarning: The `max_prompt_length` argument is deprecated and will be removed in version 0.28.0. You should instead filter your dataset before training to ensure that prompts do not exceed your desired length.
+2026-01-18 16:31:39.890 | WARNING  | __main__:grpo_train:175 - Process rank: 0, device: cuda:0, n_gpu: 1 distributed training: True, 16-bits training: False
+2026-01-18 16:31:39.890 | INFO     | __main__:grpo_train:179 - Model parameters ModelConfig(model_name_or_path='Qwen/Qwen2.5-1.5B-Instruct', model_revision='main', dtype='bfloat16', trust_remote_code=False, attn_implementation=None, use_peft=True, lora_r=16, lora_alpha=32, lora_dropout=0.1, lora_target_modules=['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], lora_target_parameters=None, lora_modules_to_save=None, lora_task_type='CAUSAL_LM', use_rslora=False, use_dora=False, load_in_8bit=False, load_in_4bit=True, bnb_4bit_quant_type='nf4', use_bnb_nested_quant=False, bnb_4bit_quant_storage=None)
+2026-01-18 16:31:39.890 | INFO     | __main__:grpo_train:180 - Script parameters ScriptArguments(tokenizer_name_or_path=None, dataset_name='openai/gsm8k', train_file_dir='data/grpo', train_samples=-1, subset_name='main', dataset_splits='train', preprocessing_num_workers=10, qlora=True)
+2026-01-18 16:31:39.891 | INFO     | __main__:grpo_train:181 - Training parameters GRPOConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+average_tokens_across_devices=True,
+batch_eval_metrics=False,
+beta=0.001,
+bf16=True,
+bf16_full_eval=False,
+cache_implementation=None,
+cast_lm_head_to_fp32=False,
+chat_template_kwargs=None,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+delta=None,
+disable_dropout=False,
+disable_tqdm=False,
+do_eval=False,
+do_predict=False,
+do_train=False,
+ds3_gather_for_generation=True,
+epsilon=0.2,
+epsilon_high=None,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_steps=None,
+eval_strategy=IntervalStrategy.NO,
+eval_use_gather_object=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+generation_batch_size=4,
+generation_kwargs=None,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+gradient_checkpointing_kwargs=None,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_revision=None,
+hub_strategy=HubStrategy.EVERY_SAVE,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+importance_sampling_level=token,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=no,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=5e-07,
+length_column_name=length,
+liger_kernel_config=None,
+load_best_model_at_end=False,
+local_rank=0,
+log_completions=False,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+log_unique_prompts=False,
+logging_dir=outputs-grpo-qwen-v1/runs/Jan18_16-31-39_autodl-container-e94b4883e6-40f13c1f,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=10,
+logging_strategy=IntervalStrategy.STEPS,
+loss_type=dapo,
+lr_scheduler_kwargs=None,
+lr_scheduler_type=SchedulerType.COSINE,
+mask_truncated_completions=False,
+max_completion_length=128,
+max_grad_norm=1.0,
+max_prompt_length=16384,
+max_steps=-1,
+max_tool_calling_iterations=None,
+metric_for_best_model=None,
+min_p=None,
+model_init_kwargs=None,
+mp_parameters=,
+multi_objective_aggregation=sum_then_normalize,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_completions_to_print=None,
+num_generations=2,
+num_generations_eval=None,
+num_iterations=1,
+num_train_epochs=1.0,
+off_policy_mask_threshold=None,
+optim=OptimizerNames.ADAMW_TORCH_FUSED,
+optim_args=None,
+optim_target_modules=None,
+output_dir=outputs-grpo-qwen-v1,
+overwrite_output_dir=False,
+parallelism_config=None,
+past_index=-1,
+per_device_eval_batch_size=1,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+project=huggingface,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+ref_model_mixup_alpha=0.6,
+ref_model_sync_steps=512,
+remove_unused_columns=False,
+repetition_penalty=1.0,
+report_to=['tensorboard'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+reward_weights=None,
+run_name=None,
+sapo_temperature_neg=1.05,
+sapo_temperature_pos=1.0,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=50,
+save_strategy=SaveStrategy.STEPS,
+save_total_limit=13,
+scale_rewards=group,
+seed=42,
+shuffle_dataset=True,
+skip_memory_metrics=True,
+steps_per_generation=1,
+sync_ref_model=False,
+temperature=1.0,
+tf32=None,
+top_entropy_quantile=1.0,
+top_k=0,
+top_p=1.0,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+trackio_space_id=trackio,
+use_bias_correction_kl=False,
+use_cpu=False,
+use_legacy_prediction_loop=False,
+use_liger_kernel=False,
+use_liger_loss=None,
+use_mps_device=False,
+use_transformers_paged=False,
+use_vllm=False,
+vllm_enable_sleep_mode=False,
+vllm_gpu_memory_utilization=0.3,
+vllm_group_port=51216,
+vllm_guided_decoding_regex=None,
+vllm_importance_sampling_cap=3.0,
+vllm_importance_sampling_correction=True,
+vllm_importance_sampling_mode=sequence_mask,
+vllm_max_model_length=None,
+vllm_mode=server,
+vllm_model_impl=vllm,
+vllm_server_base_url=None,
+vllm_server_host=0.0.0.0,
+vllm_server_port=8000,
+vllm_server_timeout=240.0,
+vllm_structured_outputs_regex=None,
+vllm_tensor_parallel_size=1,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.0,
+)
+Generating train split: 32 examples [00:00, 17462.62 examples/s]
+Processing dataset (num_proc=10): 100%|████████████████████████████████████████| 32/32 [00:00<00:00, 81.80 examples/s]
+2026-01-18 16:31:45.048 | INFO     | __main__:grpo_train:227 - *** Initializing model kwargs ***
+2026-01-18 16:31:45.048 | INFO     | __main__:grpo_train:254 - Quantizing model, load_in_4bit: True, load_in_8bit: False
+2026-01-18 16:31:45.049 | INFO     | __main__:grpo_train:311 - Using 1 GPUs
+2026-01-18 16:31:45.050 | INFO     | __main__:grpo_train:312 - model_kwargs={'revision': 'main', 'trust_remote_code': False, 'attn_implementation': None, 'torch_dtype': torch.bfloat16, 'low_cpu_mem_usage': True, 'quantization_config': BitsAndBytesConfig {
+  "_load_in_4bit": true,
+  "_load_in_8bit": false,
+  "bnb_4bit_compute_dtype": "bfloat16",
+  "bnb_4bit_quant_storage": "uint8",
+  "bnb_4bit_quant_type": "nf4",
+  "bnb_4bit_use_double_quant": true,
+  "llm_int8_enable_fp32_cpu_offload": false,
+  "llm_int8_has_fp16_weight": false,
+  "llm_int8_skip_modules": null,
+  "llm_int8_threshold": 6.0,
+  "load_in_4bit": true,
+  "load_in_8bit": false,
+  "quant_method": "bitsandbytes"
+}
+, 'device_map': 'auto'}
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-01-18 16:31:48.847 | INFO     | __main__:grpo_train:320 - Model Device Map: dict_items([('', 0)])
+2026-01-18 16:31:48.847 | INFO     | __main__:grpo_train:331 - Fine-tuning method: LoRA(PEFT)
+2026-01-18 16:31:48.847 | INFO     | __main__:grpo_train:339 - Peft target_modules: ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], lora rank: 16, 
+trainable params: 18,464,768 || all params: 1,562,179,072 || trainable%: 1.1820
+2026-01-18 16:31:49.189 | INFO     | __main__:grpo_train:363 - Gradient checkpointing disabled.
+Detected kernel version 4.19.90, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+2026-01-18 16:31:49.577 | INFO     | __main__:grpo_train:377 - *** GRPO Trainer initialized ***
+2026-01-18 16:31:49.577 | DEBUG    | __main__:grpo_train:378 - Trainer: <trl.trainer.grpo_trainer.GRPOTrainer object at 0x7ffaf53cf850>
+2026-01-18 16:31:49.578 | INFO     | __main__:grpo_train:387 - *** Starting training 2026-01-18 16:31:49 for 1.0 epochs ***
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+  0%|                                                                                          | 0/14 [00:00<?, ?it/s]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+2026-01-18 16:32:03.236 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 12+34=46, 
+ground_truth: 46, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:03.236 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: I think I understand. The two numbers you're asking about are 12 and 34. If you're adding them together, the answer would be 46. (But you already know that!) <answer>46</answer>, 
+ground_truth: 46, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:03.237 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: <think> 挑战的情境是，有巧克力白带有怀孕，巧克力白带可能是一方面自然流产的现象，也可能是药物流产的证据。 </think><answer> 经过以上分析，你怀孕后药物流的几率比较小，巧克力白带不大可能是意外怀孕也可能是药物囊未流出流产的痕迹</answer><think> 思维过程：巧克力白带是多少头晕泡沫有黄色的，但是不代表是什么，有毒品巧克力白带不一定流产，避孕套脱落初期么怀孕</think><answer>巧克力白带如果是怀孕，'.$',怀孕后药物流的, 
+ground_truth: 你的这种情况可能是细菌性或霉菌性阴道炎，可以用苦参或土槿皮煎水熏洗治疗，有一定效果，苦参或土槿皮有抗炎及抗真菌作用，后者不能内服。，其实一般情况下，进行任何一种流产方式都会对患者有一定的影响。所以患者应该注意自身护理。流产患者注意自身护理，例如当的进行饮食调理，注意保暖避免着凉。, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:03.237 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 不是啊<answer>是药物流产后的内膜几乎没有了，流出的部分变成的食物残渣，不是。</answer>, 
+ground_truth: 你的这种情况可能是细菌性或霉菌性阴道炎，可以用苦参或土槿皮煎水熏洗治疗，有一定效果，苦参或土槿皮有抗炎及抗真菌作用，后者不能内服。，其实一般情况下，进行任何一种流产方式都会对患者有一定的影响。所以患者应该注意自身护理。流产患者注意自身护理，例如当的进行饮食调理，注意保暖避免着凉。, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:03.237 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:32:03.237 | DEBUG    | __main__:format_reward:126 - format rewards: [0.0, 0.0, 0.0, 0.0]
+  7%|█████▊                                                                            | 1/14 [00:13<02:58, 13.72s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+2026-01-18 16:32:11.794 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: Human: Who divided 10 by 2?
+<think> Observation: 10÷2 is a simple division involving a number 10 and a number 2.  </think>
+<answer>10÷2=5</answer>, 
+ground_truth: 5, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:11.795 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: Human wants to know "10÷2". <think> 2 needs to be divided into 10 <answer>5</answer>, 
+ground_truth: 5, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:11.795 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 膺窗穴在治疗什么地方的问题: <think> 明确所问，确定层次，选择合适的医生或者专业书籍 </think><answer> 胸部为膺穴手术治疗的对象 </answer>, 
+ground_truth: 第3肋间隙，距前正中线4寸。, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:11.795 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 膺窗穴位于手背,位于第5掌骨结节上方的凹陷中。<think> 受体的理论定义是人体的某一部分，其发现、定位和命名是这个部分的功能恢复正常的过程。看到治疗者的手背为操作者的感觉部位。 </think><answer> 所以此穴位在第5掌骨结节上方的凹陷中 </answer>, 
+ground_truth: 第3肋间隙，距前正中线4寸。, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:11.795 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:32:11.796 | DEBUG    | __main__:format_reward:126 - format rewards: [0.0, 0.0, 0.0, 0.0]
+ 14%|███████████▋                                                                      | 2/14 [00:22<02:07, 10.60s/it]2026-01-18 16:32:14.950 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: <think> 9 plus 21 is a straightforward addition problem </think> <answer> 30 </answer>, 
+ground_truth: 30, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:14.951 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 9+21 equals 30.<think> sum of 9 and 21 </think><answer>30</answer>, 
+ground_truth: 30, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:14.951 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: <think> divide 81 into 9 equal parts </think><answer>9</answer>, 
+ground_truth: 9, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:14.951 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: <think> divide 81 by 9 </think><answer> 9 </answer>, 
+ground_truth: 9, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:14.951 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:32:14.951 | DEBUG    | __main__:format_reward:126 - format rewards: [0.0, 0.0, 1.0, 1.0]
+ 21%|█████████████████▌                                                                | 3/14 [00:25<01:19,  7.21s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+2026-01-18 16:32:28.379 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 心肌梗塞（心肌梗塞）是一种心脏疾病，由于冠状动脉的血流受阻，导致心脏肌肉缺血、缺氧而发生的严重情况。目前没有普遍有效的药物或方法能够治愈它。不过，通过治疗可以缓解症状、防止病情恶化并提高生活质量。
+
+1.人的说法说法表面上的实验基本进展，暂无稳妥。
+2.对治疗及治疗进程，具体看心理讨论的影响，有着改变的最四个姿势的典中。
+3.对抗对病情的进展及应该的掌控及经验。
+4.工作上的支援和请求吧，常规。
+, 
+ground_truth: 首先建议住院治疗,根据仔细检查结果决定治疗方案,建议做支架植入.希望能引来看重.生活护理：按排恰当膳食,以减低总脂肪,饱和脂肪酸和胆固醇的摄取,体重体重超标者要干扰总热量.经膳食重新调整３个月后,血脂水平仍明显异常者,可针对血脂异常特点,采用血脂调节剂., 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:28.379 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: <think>心电图发觉心肌梗塞的话，还是需要住院，需要有实施一系列的麻醉治疗，并且要密切观察灌注的情况，以免再次脑梗塞再次出现</think><answer>是的，心肌梗塞必需住院，一般的话，化学治疗，尽量预防工作脑细胞的进一步流淌和洪灾，但有时候也可能引致恶心，干呕等症状的再次发生。这些症状一般在挨过几周到一两个星期之内，缓慢的缓解下来。胃部不适的症状一般是从几天多少天内能减低到能舒适的时期内，然而恶心干, 
+ground_truth: 首先建议住院治疗,根据仔细检查结果决定治疗方案,建议做支架植入.希望能引来看重.生活护理：按排恰当膳食,以减低总脂肪,饱和脂肪酸和胆固醇的摄取,体重体重超标者要干扰总热量.经膳食重新调整３个月后,血脂水平仍明显异常者,可针对血脂异常特点,采用血脂调节剂., 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:28.380 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: <think> 土源性线虫感染主要发生的地区多在中国 </think><think> 地方性线虫，分布在中国北方地域 >=300km </think><answer> 主要的发病地区亚洲的中国西部 </answer>, 
+ground_truth: 苏北地区；贵州省剑河县；西南贫困地区；桂东；江西省鄱阳湖区；江西省, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:28.380 | DEBUG    | __main__:accuracy_reward:112 - predict_answer:  from：jiangtong96 Posted:2007-07-26 09:55:57 土源性线虫感染的多发地区是大米田和高粱田，食物卫生很难做到，任何人食用未经高温蒸煮的高粱米和大米，稍有不注意是致命的，死在家里是最起码要的食物卫生，在缺乏厨房（特别是临时饭馆）的生命极其贫困是一个营养的很大障碍，我们必须弄出烹煮高粱米的方法！高粱米要泛滥大米的任何一种炊具盛水之上高温蒸熟。蔬菜, 
+ground_truth: 苏北地区；贵州省剑河县；西南贫困地区；桂东；江西省鄱阳湖区；江西省, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:28.380 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:32:28.380 | DEBUG    | __main__:format_reward:126 - format rewards: [0.0, 0.0, 1.0, 0.0]
+ 29%|███████████████████████▍                                                          | 4/14 [00:38<01:36,  9.67s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+2026-01-18 16:32:34.318 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: Think: The answer is 10;
+Answer: The answer is 10., 
+ground_truth: 10, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:34.319 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 10, 
+ground_truth: 10, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:34.319 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: Human-intelligence org:[[Human-intelligence Co.","can handle simple arithmetics in two ready till Implementation Stage ]][[Line1]establish Standard pattern for problematic cases .[/Line1]], 
+ground_truth: 81, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:34.319 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: Well, when one multiplies 2 by 2 and proceeds, we get an answer of 4. Same thing here, 9 x 9 =420. <think> Basic multiplication </think><answer>420</answer>, 
+ground_truth: 81, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:34.319 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:32:34.319 | DEBUG    | __main__:format_reward:126 - format rewards: [0.0, 0.0, 0.0, 0.0]
+ 36%|█████████████████████████████▎                                                    | 5/14 [00:44<01:14,  8.32s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+2026-01-18 16:32:47.681 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 慈善组织们可以来通过多渠道援助的方式援助diabetic patients., 
+ground_truth: 吞咽障碍以及禁食；禁食；胃肠减压；胃肠营养, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:47.682 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 感染、认知功能障碍的辅助治疗主要包括营养素营养和免疫调节等。这些视强施，不能够完全治愈，但能够达到提高短期治愈率和后遗症疗效的目的。以下是一些可能的治疗方法：抗病毒治疗，适当维持免疫功能，增强营养素营养，有利提高 VitD 水平或使用 VitC 抗氧化等。 <think> 因为用药需要注意合理用药和严密观察 </think><answer>抗病毒治疗，适当维持免疫功能，激素等，绿化、调节、丰富营养素营养等</answer>, 
+ground_truth: 吞咽障碍以及禁食；禁食；胃肠减压；胃肠营养, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:47.682 | DEBUG    | __main__:accuracy_reward:112 - predict_answer:  byuda.cn/a01/specials.htm sublist=entry /probe.txt?&queryid=1122424569997924 <think>肛门异物属于肛门疾病的一种症状，普通和发烧可能有异物有关，并且肠炎也可以。但是在肛门疾病的后面还有更严重的，如肛门癌，还有新生儿肛门缺损伤也属于肛门疾病。肛门的病变的回答：</think><answer>肛门病变的可能疾病有肛门异物、肠炎、肛门缺损伤等。肛门疾病的严重程度不, 
+ground_truth: 食管克罗恩病, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:47.682 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: (The computer displays its thinking)<think> 病变是多发的，具体的病因需要根据病人的情景进行分析 </think><answer> 肛门病变可能有以下几种症状，首先可能出现囊肿破裂导致的剧烈疼痛，接着可能是前列腺能量失去抗力，从而导致性功能障碍的情况。 </answer>, 
+ground_truth: 食管克罗恩病, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:32:47.682 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:32:47.682 | DEBUG    | __main__:format_reward:126 - format rewards: [0.0, 0.0, 0.0, 0.0]
+ 43%|███████████████████████████████████▏                                              | 6/14 [00:58<01:20, 10.03s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+2026-01-18 16:33:01.542 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 中面部骨发育不良的手术治疗主要包括有：①半颌隔融合术；②Z字成形术；③牵引成形融合术；④CHANG成形术；⑤牙拔除术；⑥下巴塑形术；⑦偏侧磨牙勾托手术；⑧Dll1基因矫正术；⑨复杂骨折整复术等。<think> 中面部骨发育不良畸形的手术治疗包括半颌隔融合术、Z字成形术、牵引成形融合术、CHANG成形术、牙拔除术、下巴塑, 
+ground_truth: 牵引成骨技术, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:01.542 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 中面部骨发育不良畸形的手术治疗主要包括一些整形外科手术，比如：中面部骨瓣整形术以纠正中面短缩畸形；面部断层骨原位皮瓣移植术，法络锥形术，以此重建重建中面部的形态；口凹爪状畸形的矫正需进行颚拉伸术；如结合骨、软组织整形技术，对眶距过宽、鼻啄板等畸形的处理更加有效。这些手术可以改善面部的大小、形状和功能，但具体情况需要医生根据患者的具体情况来确定治疗方案。, 
+ground_truth: 牵引成骨技术, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:01.543 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: Human practices: divide 36 by 9 to get the answer.<br>Assistant reasoning: calculate the division.<br><think> calculate 36 ÷ 9 to get the answer. </think><answer> 4 </answer>, 
+ground_truth: 4, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:01.543 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: I think you meant to ask, "What is 3 divided by 9?" In that case, 3 divided by 9 is 0.333333 with the 3 repeating.<think> recall 3÷9 maybe means 3 times 1/9 </think><answer>0.333333</answer>, 
+ground_truth: 4, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:01.543 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:33:01.543 | DEBUG    | __main__:format_reward:126 - format rewards: [0.0, 0.0, 0.0, 0.0]
+ 50%|█████████████████████████████████████████                                         | 7/14 [01:11<01:19, 11.30s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+2026-01-18 16:33:07.350 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: That's 55. <think> multiplying 5 by 11 and adding 2 we get 55 with the same result </think><answer>55</answer>, 
+ground_truth: 55, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:07.350 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 5×11=55 <answer>55</answer>, 
+ground_truth: 55, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:07.351 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 4×7=28 <answer>28 </answer>, 
+ground_truth: 28, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:07.351 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: Human: Do you want the question to be corrected to something less offensive? You asked me "4×7=?", what's the answer? It's 28., 
+ground_truth: 28, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:07.351 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:33:07.352 | DEBUG    | __main__:format_reward:126 - format rewards: [0.0, 0.0, 0.0, 0.0]
+ 57%|██████████████████████████████████████████████▊                                   | 8/14 [01:17<00:57,  9.56s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+2026-01-18 16:33:12.772 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 88+76 has no interesting answer because I should consider number theory directly: <think> there are no interesting primes in this sum </think><answer> impossible to be any special answer with specific numbers </answer>, 
+ground_truth: 164, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:12.772 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: <think> add them together </think><answer>164</answer>, 
+ground_truth: 164, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:12.772 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: Human: 
+the answer is 56, 
+ground_truth: 56, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:12.772 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: I find that multiplying 7 by 8 gives 56. <think> 7*8=56 </think><answer>56</answer>, 
+ground_truth: 56, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:12.772 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:33:12.773 | DEBUG    | __main__:format_reward:126 - format rewards: [0.0, 1.0, 0.0, 0.0]
+ 64%|████████████████████████████████████████████████████▋                             | 9/14 [01:23<00:41,  8.24s/it]2026-01-18 16:33:17.945 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 57+29 equals 86.<br /><think> Addition </think><answer> 86 </answer>, 
+ground_truth: 86, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:17.946 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: <think> addition </think><answer>86</answer>, 
+ground_truth: 86, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:17.946 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: think:A simple subtraction problem.<br>27 is lesser than 93, so the answer will be positive.<br>Think: 27-93= -66<br>Answer: The answer is -66., 
+ground_truth: 66, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:17.946 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: <think> the answer is simply rephrased: subtract 27 from 93 </think><answer>66</answer>, 
+ground_truth: 66, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:17.946 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:33:17.946 | DEBUG    | __main__:format_reward:126 - format rewards: [0.0, 1.0, 0.0, 1.0]
+{'loss': 0.0479, 'grad_norm': 2.265625, 'learning_rate': 1.6134877823936607e-07, 'num_tokens': 6408.0, 'completions/mean_length': 53.45, 'completions/min_length': 22.6, 'completions/max_length': 81.6, 'completions/clipped_ratio': 0.15, 'completions/mean_terminated_length': 42.85833396911621, 'completions/min_terminated_length': 22.6, 'completions/max_terminated_length': 65.3, 'rewards/accuracy_reward/mean': 0.0, 'rewards/accuracy_reward/std': 0.0, 'rewards/format_reward/mean': 0.15, 'rewards/format_reward/std': 0.2154700517654419, 'reward': 0.15, 'reward_std': 0.2154700517654419, 'frac_reward_zero_std': 0.8, 'kl': 0.0006717461103107781, 'entropy': 1.7936904013156891, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 8.790628671459853, 'epoch': 0.71}
+ 71%|█████████████████████████████████████████████████████████▊                       | 10/14 [01:28<00:29,  7.30s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+2026-01-18 16:33:31.143 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 67-14=53<answer>53</answer>, 
+ground_truth: 53, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:31.144 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 67-14=53, 
+ground_truth: 53, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:31.144 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: Human: Can you solve the following problem by working out the correct answer?<br><br>The weight of 64kg is _____ times the weight of Jose, who weighs 8kg.
+
+A. 8<br><br>B. 40<br><br>C. 30<br><br>D. 2<sub>th</sub></sub>
+
+I decided that I needed to multiply 64 by 8 and then use my answer as B.
+
+<think> Jose weighs 8kg, and if 64 is that many times Jose's weight, then to find out what his weight is, I, 
+ground_truth: 8, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:31.144 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: Sure, let's break it down: 
+
+64 ÷ 8 = 8
+
+This is a straightforward division problem, where 64 is divided by 8 to get a result of 8. 
+
+Therefore, 64 divided by 8 equals 8., 
+ground_truth: 8, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:31.144 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:33:31.144 | DEBUG    | __main__:format_reward:126 - format rewards: [0.0, 0.0, 0.0, 0.0]
+ 79%|███████████████████████████████████████████████████████████████▋                 | 11/14 [01:41<00:27,  9.10s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+2026-01-18 16:33:44.591 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 妊娠期糖尿病、妊娠期高血压、妊娠中毒症和羊水过多是妊娠期常见的疾病。针对不同的妊娠疾病，可以采取不同的辅助治疗方法。比如，则可以用葡萄糖控制、血清处理等方法预防控制妊娠期糖尿病；常用降压药物如肼苯哒嗪处理妊娠期高血压，静注地塞米松或E-内酰胺处理胎儿肺；纠正植物性贫血或凝血异常等方法治疗妊娠期中毒症；羊水过多时，可使用放羊水疗法或服用利尿药减轻症状。<br> <think> 辅助治疗方法只能控制病情，, 
+ground_truth: 孕期营养指导, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:44.592 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 妊娠疾病可以由全身性疾病引起，因此妊娠高血糖，妊娠期糖尿病在妊娠并发症中占难产、胎儿生长受限、巨大儿等问题产生。妊娠高血糖除了高血糖，还包括胎儿发育不良、胎儿免疫性溶血性疾病等。所以妊娠高血糖对母体和胎儿健康影响都很大。治疗妊娠糖尿病应考虑营养和运动，常规治疗（临床通化）。妊娠期糖尿病ença desenvolvimento da 以及妊娠糖尿病发展。 对于治疗，虽然没有特效药，饮食控制及运动为妊娠糖尿病主要治疗措施。避孕后，可以通过避孕工具避孕。孕期，严格控制, 
+ground_truth: 孕期营养指导, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:44.592 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: Human intuition suggests that 75-32 would be around 43, but we can perform the operation to verify this. <think> recalculating the subtraction </think><answer> 75-32=43 </answer>, 
+ground_truth: 43, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:44.592 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: Human beings first need to think about how to calculate this operation, then they will know the result is 43. <think> subtracting from right to left </think><answer> 43 </answer>, 
+ground_truth: 43, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:44.592 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:33:44.592 | DEBUG    | __main__:format_reward:126 - format rewards: [0.0, 0.0, 0.0, 0.0]
+ 86%|█████████████████████████████████████████████████████████████████████▍           | 12/14 [01:54<00:20, 10.43s/it]2026-01-18 16:33:47.488 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: <think> simplifying the problem </think><answer> 37 </answer>, 
+ground_truth: 37, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:47.488 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: <think> subtraction </think><answer> 37 </answer>, 
+ground_truth: 37, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:47.488 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 45+67=112 <answer>45+67 equals 112</answer>, 
+ground_truth: 112, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:47.488 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: The answer is 112. <answer>112</answer>, 
+ground_truth: 112, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:33:47.488 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:33:47.489 | DEBUG    | __main__:format_reward:126 - format rewards: [1.0, 1.0, 0.0, 0.0]
+ 93%|███████████████████████████████████████████████████████████████████████████▏     | 13/14 [01:57<00:08,  8.14s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+2026-01-18 16:34:00.594 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 维生素E乳膏通常用于治疗皮肤挫伤、晒伤、聚合性皮炎、截瘫并伴有皮肤干燥或黄所引起的炎症等。<think> 维胺酯是维生素B6的一种，通常用于治疗头皮或外用患处的疾病<answer>维胺酯乳膏主要适用于外用治疗痤疮、银屑病、湿疹、皮肤瘙痒、黄斑病、皮肤溃疡、外伤扩大皮肤病皮肤损害，如皮肤拉伸、皮肤增厚、痘疮、皮肤ritis、皮疱疹、皮肤疱疹、皮肤疱疹、小块疹皮肤, 
+ground_truth: 痤疮；暴发性痤疮；寻常痤疮；婴儿痤疮；聚合性痤疮；沙漠疮；背痈；肺风粉刺；职业性痤疮, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:34:00.594 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: 维胺酯消皱乳膏适用于**酒糟鼻、皮肤及皮下脂肪组织分泌的腺体疾病**皮肤面红，大约画像油腻的皮脂溢散面红steller红皮炎传染性出血天鹅）丘疹或许多痘痘的情况。这类皮肤疾病，例如银屑病、痒疮等皮肤组织的炎症皮肤病也会用此疗法。对于皮下脂肪组织的分泌腺体疾病中的红十字会病，皮脂溢溢，两种不常见的情况腺类疾病，可用于主治。红色神经目红的类似奶牛皮肤面红的情况诸事，与皮疹，, 
+ground_truth: 痤疮；暴发性痤疮；寻常痤疮；婴儿痤疮；聚合性痤疮；沙漠疮；背痈；肺风粉刺；职业性痤疮, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:34:00.594 | DEBUG    | __main__:accuracy_reward:112 - predict_answer:     I am sorry, but I can't answer your question since I don't have enough information available to me. I suggest checking a reliable Chinese medicinal herb book., 
+ground_truth: 1.气候土壤：天雄喜温暖、湿润和向阳环境，宜选土层深厚肥沃、土质疏松、排水良好的土壤栽种。2.种植：根块繁殖，选大的子根或野生乌头作种。在冬至前6-10天栽种，行距1尺，株距5寸，种前施足底肥，开2寸深沟，使芽向上栽入沟内，覆土1-2寸，每亩用种根240-300斤，地冻前浇水，并盖土粪一层越冬。等二年苗高1尺左右，摘除顶。一般留6-8片叶，并随时去腋芽。3.田间管理：生长时间，有根腐病和霜霉病害，应加强管理，注意排水通风。霜霉病发病初期可喷射波尔多液或代森铵防治。4.采集加工：于6月底7月初时挖取根部，洗净泥土，晒干。炮制方法1.《雷公炮炙论》：宜炮皴坼后去皮尖底用，不然阴制用并得。2.《药性论》：干姜制用之。3.《日华子本草》：凡丸、散炮去皮脐用，饮药即和皮生使甚佳。4.《纲目》：熟用。一法，每十两，以酒浸七日，掘土坑，用炭半枰煅赤，去火，以醋二升沃之，候干，趁热入天雄在内，小盆合一夜，取出，去脐用之。, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:34:00.595 | DEBUG    | __main__:accuracy_reward:112 - predict_answer: clinchtree***xiankyongbaoقيตร香 rozp่={`洵卟�੨iK=相關聯系請咨詢售前或售後服務>Email:clinch2345@gmail.compleasecontactusfirstslideleftslidebottomyouraccount123ABCUi側 xOffset: -2 / mousepathxabsolute: 5slideleft: 0slidebottom: 4sliderotate: 0scalex: 1scaley: 1angle: 0wait: 200delay: 0label: 销售员labelsize: 12rwitterly, 
+ground_truth: 1.气候土壤：天雄喜温暖、湿润和向阳环境，宜选土层深厚肥沃、土质疏松、排水良好的土壤栽种。2.种植：根块繁殖，选大的子根或野生乌头作种。在冬至前6-10天栽种，行距1尺，株距5寸，种前施足底肥，开2寸深沟，使芽向上栽入沟内，覆土1-2寸，每亩用种根240-300斤，地冻前浇水，并盖土粪一层越冬。等二年苗高1尺左右，摘除顶。一般留6-8片叶，并随时去腋芽。3.田间管理：生长时间，有根腐病和霜霉病害，应加强管理，注意排水通风。霜霉病发病初期可喷射波尔多液或代森铵防治。4.采集加工：于6月底7月初时挖取根部，洗净泥土，晒干。炮制方法1.《雷公炮炙论》：宜炮皴坼后去皮尖底用，不然阴制用并得。2.《药性论》：干姜制用之。3.《日华子本草》：凡丸、散炮去皮脐用，饮药即和皮生使甚佳。4.《纲目》：熟用。一法，每十两，以酒浸七日，掘土坑，用炭半枰煅赤，去火，以醋二升沃之，候干，趁热入天雄在内，小盆合一夜，取出，去脐用之。, 
+answer_parsed: [], gold_parsed: [], reward: 0.0
+
+
+2026-01-18 16:34:00.595 | DEBUG    | __main__:accuracy_reward:115 - accuracy rewards: [0.0, 0.0, 0.0, 0.0]
+2026-01-18 16:34:00.595 | DEBUG    | __main__:format_reward:126 - format rewards: [0.0, 0.0, 0.0, 0.0]
+{'train_runtime': 133.8064, 'train_samples_per_second': 0.209, 'train_steps_per_second': 0.105, 'train_loss': 0.034233182529695635, 'num_tokens': 9120.0, 'completions/mean_length': 66.375, 'completions/min_length': 25.75, 'completions/max_length': 102.5, 'completions/clipped_ratio': 0.375, 'completions/mean_terminated_length': 32.4375, 'completions/min_terminated_length': 25.75, 'completions/max_terminated_length': 42.5, 'rewards/accuracy_reward/mean': 0.0, 'rewards/accuracy_reward/std': 0.0, 'rewards/format_reward/mean': 0.125, 'rewards/format_reward/std': 0.14433756470680237, 'reward': 0.125, 'reward_std': 0.14433756470680237, 'frac_reward_zero_std': 1.0, 'kl': 0.0010127923596883193, 'entropy': 1.784269593656063, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 10.62431103689596, 'epoch': 1.0}
+100%|█████████████████████████████████████████████████████████████████████████████████| 14/14 [02:13<00:00,  9.56s/it]
+***** train metrics *****
+  total_flos               =        0GF
+  train_loss               =     0.0342
+  train_runtime            = 0:02:13.80
+  train_samples            =         28
+  train_samples_per_second =      0.209
+  train_steps_per_second   =      0.105
+2026-01-18 16:34:03.700 | INFO     | __main__:grpo_train:401 - *** Training complete ***
+2026-01-18 16:34:03.700 | INFO     | __main__:grpo_train:402 - *** Save model ***
+2026-01-18 16:34:06.349 | INFO     | __main__:grpo_train:408 - Model saved to outputs-grpo-qwen-v1
+2026-01-18 16:34:06.545 | INFO     | __main__:grpo_train:414 - Tokenizer saved to outputs-grpo-qwen-v1
+2026-01-18 16:34:06.559 | INFO     | __main__:grpo_train:426 - *** Training complete! ***

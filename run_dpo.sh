@@ -1,5 +1,5 @@
-CUDA_VISIBLE_DEVICES=0,1 python dpo_training.py \
-    --model_name_or_path Qwen/Qwen2.5-0.5B-Instruct \
+python dpo_training.py \
+    --model_name_or_path Qwen/Qwen2.5-1.5B-Instruct \
     --template_name qwen \
     --train_file_dir ./data/reward \
     --validation_file_dir ./data/reward \
@@ -28,4 +28,5 @@ CUDA_VISIBLE_DEVICES=0,1 python dpo_training.py \
     --report_to tensorboard \
     --remove_unused_columns False \
     --gradient_checkpointing True \
-    --cache_dir ./cache
+    --cache_dir /root/autodl-tmp/cache \
+    --optim adamw_torch_fused

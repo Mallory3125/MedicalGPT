@@ -1,10 +1,13 @@
-import json
+import json,os
 import random
 
 from openai import OpenAI
 from tqdm import tqdm
 
-client = OpenAI()
+client = OpenAI(
+    api_key=os.getenv("DASHSCOPE_API_KEY"),
+    base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+)
 print(client)
 
 
@@ -14,10 +17,10 @@ def generate(prompt):
         {"role": "user", "content": prompt}
     ]
     r = client.chat.completions.create(
-        model='gpt-4o',
+        model='deepseek-v3.2',
         messages=messages,
         temperature=1,
-        max_tokens=3048,  # 增加max_tokens以生成更长的对话
+        max_tokens=2048,  # 增加max_tokens以生成更长的对话
     )
     response = r.choices[0].message.content
     print("生成的对话：", response)
@@ -32,7 +35,7 @@ with open(file_role2, "r", encoding="utf-8") as file:
     role2s = file.readlines()
 
 save_file = "roleplay_train_data_v1.jsonl"
-total_lines = 1000
+total_lines = 20
 
 with tqdm(total=total_lines, desc="生成对话") as pbar:
     while pbar.n < total_lines:
@@ -44,7 +47,7 @@ with tqdm(total=total_lines, desc="生成对话") as pbar:
         conversation = {"id": str(pbar.n), "system_prompt": p, "conversations": []}
 
         combined_prompt = f"你扮演一个护士，以下对话是你和患者之间的对话。\n护士角色：{data1}\n患者角色：{data2}\n"
-        combined_prompt += "进行多轮问答（6轮以上）。患者说话以`患者:`开头，护士说话以`护士:`开头。患者先提问。\n"
+        combined_prompt += "进行多轮问答（3轮）。患者说话以`患者:`开头，护士说话以`护士:`开头。患者先提问。\n"
 
         prompt = combined_prompt + "\n对话开始：\n "
         response = generate(prompt)
